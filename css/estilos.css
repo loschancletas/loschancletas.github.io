@@ -118,7 +118,7 @@ main article.articulo .enlace a h2 {
     margin-block: center;
     text-align: center;
     display: inline-block;
-    font-size: 1.5em;
+    font-size: 1.2em;
     //**/
 }
 
@@ -127,4 +127,5 @@ footer {
     color: #fff;
     padding: 10px;
     text-align: center;
+
 }
