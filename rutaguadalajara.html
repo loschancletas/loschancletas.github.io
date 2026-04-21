@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="estilo.css" />
+    <script src="seleccion.js" defer></script>
   </head>
   <body>
+    <button id="etiqueta" class="boton-superior">
+      <!--img src="iconos/language_40dp.png" alt="Los chancletas" /-->
+      Guardar selección
+    </button>
+
     <header>
       <div class="logo">
         <a href="index.html"
@@ -31,83 +37,184 @@
       <section id="info">
         <h1>Ruta de Guadalajara</h1>
         <article class="articulo">
-          <div class="contenido">
-            <a
-              href="https://es.wikiloc.com/rutas-mountain-bike/la-estacion-guadalajara-56691907"
-              target="_blank"
-              ><h2>Estación-Guadalajara</h2></a
-            >
-            <br />
-            <img
-              src="img/la-estacion.png"
-              alt="Castillos de la Alcarria, Guadalajara"
-            /><br /><br />
-
-            <a
-              href="https://es.wikiloc.com/rutas-mountain-bike/castillos-de-la-alcarria-castillo-de-torija-iglesia-castillo-de-valdearenas-castillo-del-cid-jadraq-34622559"
-              target="_blank"
-              ><h2>Castillos de la Alcarria</h2></a
-            ><br />
-            <img
-              src="img/castillos-de-la-alcarria.png"
-              alt="Castillos de la Alcarria, Guadalajara"
-            /><br /><br />
-
-            <a
-              href="https://es.wikiloc.com/rutas-mountain-bike/alcala-de-henares-mirador-virgen-tocon-palacio-del-infantado-la-estacion-235757626"
-              target="_blank"
-              ><h2>Alcalá-Estación</h2></a
-            ><br />
-            <img
-              src="img/alcala-la-estacion.png"
-              alt="Alcalá de Henares, Guadalajara"
-            /><br /><br />
-          </div>
-          <div class="contenido">
-            <div>
-              <a href="https://loc.wiki/t/81189956?wa=sc" target="_blank"
-                ><h2>Camino del Cid</h2></a
+          <form id="formulario" method="post">
+            <div class="contenido">
+              <h2>
+                <input
+                  type="checkbox"
+                  id="alcala-estacion"
+                  onclick="guardarSeleccion()"
+                />
+                <a
+                  href="https://es.wikiloc.com/rutas-mountain-bike/alcala-de-henares-mirador-virgen-tocon-palacio-del-infantado-la-estacion-235757626"
+                  target="_blank"
+                  >Alcalá-Estación
+                </a>
+              </h2>
+              <a
+                href="img/ImGuadalajara/alcala-la-estacion.png"
+                target="_blank"
               >
-              <br />
-              <img
-                src="img/camino-del-cid(2).png"
-                alt="Castillos de la Alcarria, Guadalajara"
-              /><br /><br />
-            </div>
-            <a href="https://loc.wiki/t/201505809?wa=sc" target="_blank">
-              <h2>Guadalajara - Vallecas</h2></a
-            ><br />
-            <img
-              src="img/guadalajara-vallecas.png"
-              alt="Guadalajara a Vallecas, Guadalajara"
-            /><br /><br />
+                <img
+                  src="img/ImGuadalajara/alcala-la-estacion.png"
+                  alt="Alcalá de Henares, Guadalajara"
+                />
+              </a>
 
-            <a href="https://loc.wiki/t/15077672?wa=sc" target="_blank"
-              ><h2>Jadraque-Guadalajara</h2></a
-            ><br />
-            <img
-              src="img/jadraque-guadalajara.png"
-              alt="Jadraque, Guadalajara"
-            /><br /><br />
-          </div>
+              <h2>
+                <input
+                  type="checkbox"
+                  id="estacion-guadalajara"
+                  onclick="guardarSeleccion()"
+                />
+                <a
+                  href="https://es.wikiloc.com/rutas-mountain-bike/la-estacion-guadalajara-56691907"
+                  target="_blank"
+                  >Estación-Guadalajara
+                </a>
+              </h2>
+              <a href="img/ImGuadalajara/la-estacion.png" target="_blank">
+                <img
+                  src="img/ImGuadalajara/la-estacion.png"
+                  alt="Castillos de la Alcarria, Guadalajara"
+                />
+              </a>
+
+              <h2>
+                <input
+                  type="checkbox"
+                  id="castillos-alcarria"
+                  onclick="guardarSeleccion()"
+                />
+                <a
+                  href="https://es.wikiloc.com/rutas-mountain-bike/castillos-de-la-alcarria-castillo-de-torija-iglesia-castillo-de-valdearenas-castillo-del-cid-jadraq-34622559"
+                  target="_blank"
+                  >Castillos de la Alcarria
+                </a>
+              </h2>
+              <a
+                href="img/ImGuadalajara/castillos-de-la-alcarria.png"
+                target="_blank"
+              >
+                <img
+                  src="img/ImGuadalajara/castillos-de-la-alcarria.png"
+                  alt="Castillos de la Alcarria, Guadalajara"
+                />
+              </a>
+
+              <h2>
+                <input
+                  type="checkbox"
+                  id="camino-cid"
+                  onclick="guardarSeleccion()"
+                />
+                <a href="https://loc.wiki/t/81189956?wa=sc" target="_blank">
+                  Camino del Cid
+                </a>
+              </h2>
+              <a href="img/ImGuadalajara/camino-del-cid(2).png" target="_blank">
+                <img
+                  src="img/ImGuadalajara/camino-del-cid(2).png"
+                  alt="Castillos de la Alcarria, Guadalajara"
+              /></a>
+
+              <h2>
+                <input
+                  type="checkbox"
+                  id="jadraque-guadalajara"
+                  onclick="guardarSeleccion()"
+                />
+                <a href="https://loc.wiki/t/15077672?wa=sc" target="_blank">
+                  Jadraque-Guadalajara
+                </a>
+              </h2>
+              <a
+                href="img/ImGuadalajara/jadraque-guadalajara.png"
+                target="_blank"
+              >
+                <img
+                  src="img/ImGuadalajara/jadraque-guadalajara.png"
+                  alt="Jadraque, Guadalajara"
+                />
+              </a>
+
+              <h2>
+                <input
+                  type="checkbox"
+                  id="guadalajara-vallecas"
+                  onclick="guardarSeleccion()"
+                />
+                <a href="https://loc.wiki/t/201505809?wa=sc" target="_blank">
+                  Guadalajara - Vallecas
+                </a>
+              </h2>
+              <a
+                href="img/ImGuadalajara/guadalajara-vallecas.png"
+                target="_blank"
+              >
+                <img
+                  src="img/ImGuadalajara/guadalajara-vallecas.png"
+                  alt="Guadalajara a Vallecas, Guadalajara"
+              /></a>
+            </div>
+          </form>
         </article>
         <h1>Alojamientos</h1>
         <article class="articulo">
           <div class="contenido">
-            <br />
-            <a
-              href="https://www.booking.com/hotel/es/el-rincon-de-atenea.es.html?aid=1236963&label=slh1_-QVPA1H1XbMSWnZiJjQ%2AVdAS716100683940%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-2425916810356%3Alp9199133%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YcpDr58xwogAlZdaxrEfMBA&sid=6b78913cfb7bacda2fc69adeca1cf76e&all_sr_blocks=1294900001_429900355_5_0_0_1351854&checkin=2026-05-14&checkout=2026-05-15&dest_id=-404483&dest_type=city&dist=0&group_adults=5&group_children=0&hapos=1&highlighted_blocks=1294900001_429900355_5_0_0_1351854&hpos=1&matching_block_id=1294900001_429900355_5_0_0_1351854&no_rooms=1&req_adults=5&req_children=0&room1=A%2CA%2CA%2CA%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=1294900001_429900355_5_0_0_1351854_9273&srepoch=1775329443&srpvid=6f6c8604f59f003b&type=total&ucfs=1&"
-              target="_blank"
-              style="text-align: center; display: inline-block"
-              ><h2>Hotel El Rincón de Atenea</h2></a
-            >
+            <h2>
+              <input
+                type="checkbox"
+                id="hotel-rincon-atenea"
+                onclick="guardarSeleccion()"
+              />
+              <a
+                href="https://www.booking.com/hotel/es/el-rincon-de-atenea.es.html?aid=1236963&label=slh1_-QVPA1H1XbMSWnZiJjQ%2AVdAS716100683940%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-2425916810356%3Alp9199133%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YcpDr58xwogAlZdaxrEfMBA&sid=6b78913cfb7bacda2fc69adeca1cf76e&all_sr_blocks=1294900001_429900355_5_0_0_1351854&checkin=2026-05-14&checkout=2026-05-15&dest_id=-404483&dest_type=city&dist=0&group_adults=5&group_children=0&hapos=1&highlighted_blocks=1294900001_429900355_5_0_0_1351854&hpos=1&matching_block_id=1294900001_429900355_5_0_0_1351854&no_rooms=1&req_adults=5&req_children=0&room1=A%2CA%2CA%2CA%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=1294900001_429900355_5_0_0_1351854_9273&srepoch=1775329443&srpvid=6f6c8604f59f003b&type=total&ucfs=1&"
+                target="_blank"
+                style="text-align: center; display: inline-block"
+              >
+                Hotel El Rincón de Atenea
+              </a>
+            </h2>
+
             <img
-              src="img/Alojamiento.jpg"
+              src="img/ImGuadalajara/Alojamiento.jpg"
               alt="Hotel El Rincón de Atenea, Guadalajara"
             />
           </div>
         </article>
+        <h1>Otras rutas</h1>
+        <article class="articulo">
+          <div class="contenido">
+            <h2>
+              <input
+                type="checkbox"
+                id="vallecas-alcala"
+                onclick="guardarSeleccion()"
+              />
+              <a
+                href="https://es.wikiloc.com/rutas-mountain-bike/btt-vallecas-alcala-de-henares-3339090"
+                target="_blank"
+                style="text-align: center; display: inline-block"
+                >Vallecas - Alcala de Henares
+              </a>
+            </h2>
+            <img
+              src="img/ImGuadalajara/vallecas-alcala.png"
+              alt="Vallecas a Alcala de Henares, Guadalajara"
+            />
+          </div>
+          <a class="slider-button slider-button-down" href="#"> &#9757; </a>
+        </article>
       </section>
     </main>
+    <button
+      class="boton-fijo"
+      id="guardar-seleccion"
+      onclick="guardarEnLocalStorage()"
+    >
+      <img src="iconos/language_40dp.png" alt="Los chancletas" />
+      Guardar selección
+    </button>
   </body>
 </html>
