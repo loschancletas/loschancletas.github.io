@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Storage</title>
+    <script src="local.js" defer></script>
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+  <body>
+    <h1>Datos locales</h1>
+    <div>
+      <label id="etiqueta" class="boton-superior">
+        <img src="iconos/language_40dp.png" alt="Los chancletas" />
+        Guardar selección
+      </label>
+      <form id="formulario">
+        <input type="text" id="direccionIp" />
+        <input type="text" id="ruta" />
+        <input type="text" id="seleccion" />
+        <input type="submit" onclick="guardar()" />
+      </form>
+    </div>
+  </body>
+</html>
