@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function cargadatos() {
-  fetch("img/fotosSantiago.txt")
+  fetch("img/santiago/fotosSantiago.txt")
     .then((response) => response.text())
     .then((data) => {
       const lines = data.split(/\r?\n/).filter((line) => line.trim() !== "");
