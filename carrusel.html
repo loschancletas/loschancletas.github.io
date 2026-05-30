@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrousel</title>
+    <link rel="stylesheet" href="css/carrusel.css" />
+  </head>
+  <body>
+    <div class="contenedor">
+      <input
+        type="range"
+        min="0"
+        max="1"
+        value="0.5"
+        step="0.1"
+        id="mislider"
+      />
+      <div class="atras botones">&#60;</div>
+      <div class="adelante botones">&#62;</div>
+      <!-- <img src="/img/20251012_155522.jpg" alt="" id="imagen" /> -->
+      <img src="" alt="" id="imagen1" />
+      <div class="imagen">
+        <div class="texto-flotante">Pausa</div>
+      </div>
+    </div>
+    <audio autoplay loop id="reproductor">
+      <source
+        src="musica/santiago/Gabry Ponte, LUM!X, & Prezioso - Thunder - (64 Kbps).mp3"
+        type="audio/mp3"
+      />
+      <source
+        src="musica/santiago/Gabry Ponte, KEL - Tarantella - (64 Kbps).mp3"
+        type="audio/mp3"
+      />
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+    <!-- Reproductor de audio -->
+    <!-- <audio id="reproductor" controls>
+      <source src="musica/Sou_Forte_Rock.mp3" type="audio/mpeg" />
+      Tu navegador no soporta el elemento audio.
+    </audio> -->
+    <span id="valor">50%</span>
+    <!-- Barra de volumen (0 a 1) -->
+
+    <script>
+      const barra = document.getElementById("mislider");
+      const reproductor = document.getElementById("reproductor");
+      const valor = document.getElementById("valor");
+
+      // Escuchar cambios en el slider
+      barra.addEventListener("input", function (ev) {
+        const volumen = ev.currentTarget.value;
+        reproductor.volume = volumen; // Ajustar volumen del audio
+        valor.textContent = (volumen * 100).toFixed(0) + "%"; // Mostrar porcentaje
+      });
+    </script>
+    <script src="js/carrusel.js"></script>
+  </body>
+</html>
