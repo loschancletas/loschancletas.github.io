@@ -1,0 +1,147 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /*Asegura que el body ocupe la altura completa */
+  background-size: cover;
+  background-image:
+    linear-gradient(#01052700, blue, rgba(0, 14, 31, 0.5)),
+    /* url("screen_2x.webp"); */ url("/img/screen_2x.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.slider-container {
+  width: 99%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  margin: auto;
+}
+.titulo {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 30px;
+  /* Opcional: text-align: center; para centrar el contenido interno del texto */
+}
+.slider-track {
+  display: flex;
+  width: 100%;
+}
+.slide {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  /* overflow: hidden; */
+}
+.slide h3 {
+  text-align: center;
+  color: rgb(237, 172, 172);
+}
+.slide img {
+  padding: 0 0.005%;
+  width: 100%;
+  height: 90dvh;
+  object-fit: cover;
+}
+.slide img:hover {
+  box-shadow: 0px 0px 20px 0px rgba(46, 135, 237, 0.5);
+  transform: scale(1);
+  transition: transform 1s ease;
+}
+.botones {
+  position: relative;
+  bottom: 55%;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.botones button {
+  transition: background-color 1s;
+  padding: 6px 6px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 40px;
+}
+#siguiente {
+  position: absolute;
+  left: 95%;
+}
+#anterior {
+  position: absolute;
+  left: 2%;
+}
+.botones :hover {
+  background-color: green;
+}
+audio {
+  position: absolute;
+  bottom: -2%;
+  left: -2%;
+  scale: 0.5;
+}
+@media (max-width: 768px) {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /*Asegura que el body ocupe la altura completa */
+    background-color: rgb(46, 135, 237);
+  }
+  /* 1. Configuración del contenedor visible (ventana) */
+  .slider-container {
+    position: relative;
+    max-width: 500px;
+    max-height: 85dvh;
+    width: 100%;
+    height: 85dvh;
+    margin: auto;
+  }
+  .titulo {
+    position: absolute;
+    z-index: 100;
+    left: 20%;
+    top: 0%;
+    transform: translatex(-10%);
+    font-size: 22px;
+    text-align: center;
+    color: blueviolet;
+  }
+  .slider-track {
+    display: flex;
+    /* Apila las imágenes verticalmente */
+    flex-direction: column;
+    width: 100%;
+    height: 85dvh;
+  }
+  .slide img {
+    position: relative;
+    padding: 1 8%;
+    width: 100%;
+    height: 50dvh;
+    top: 30%;
+    object-fit: cover;
+  }
+  .botones {
+    position: absolute;
+    left: 95%;
+  }
+  .botones button {
+    padding: 6px 6px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 40px;
+  }
+  #siguiente {
+    position: absolute;
+    top: 240px;
+  }
+  #anterior {
+    position: absolute;
+    top: -120px;
+  }
+}
