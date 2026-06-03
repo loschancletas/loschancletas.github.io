@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galería Camino de Santiago</title>
+    <link rel="stylesheet" href="/css/oporto.css" />
+    <script src="js/oporto.js"></script>
+  </head>
+  <body>
+    <div class="slider-container">
+      <div class="titulo">
+        <h1>Camino de Oporto</h1>
+      </div>
+      <div class="slider-track">
+        <div class="slide"></div>
+      </div>
+      <div class="botones">
+        <button
+          onclick="prev()"
+          id="anterior"
+          style="visibility: hidden; pointer-events: none"
+        >
+          &larr;
+        </button>
+        <button onclick="next()" id="siguiente">&rarr;</button>
+      </div>
+      <audio autoplay loop>
+        <source src="musica/oporto/Sou_Forte_Rock.mp3" type="audio/mpeg" />
+        <source
+          src="musica/oporto/Mar de Lágrimas_techno.mp3"
+          type="audio/mp3"
+        />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
+    </div>
+  </body>
+</html>
