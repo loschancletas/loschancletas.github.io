@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejemplo de Slider con HTML y CSS</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="datos.js"></script>
+  </head>
+
+  <body>
+    <div id="kiko-slider">
+      <ul class="slider">
+        <li id="slide1">
+          <!-- <h1>Hola Programadores</h1>
+          <img src="/img/20251012_155522.jpg" />
+        </li>
+        <li id="slide2">
+          <img src="/img/santiago/20210913_123947.jpg" />
+        </li>
+        <li id="slide3">
+          <img src="/img/ucles/20251012_121822.jpg" />
+        </li>
+
+        <li id="slide4">
+          <h1>Ejemplo con otros elementos</h1>
+          <p>
+            Esto es un párrafo de ejemplo para comprobar que podemos meter
+            cualquier tipo de elementos en el slider
+          </p>
+          <a href="https://kikopalomares.com/" target="_blank"
+            >¡Corre a mi web para más contenido!</a
+          > -->
+        </li>
+      </ul>
+      <ul class="menu">
+        <li>
+          <a href="#slide1" style="color: orange">1</a>
+        </li>
+        <!-- <li>
+          <a href="#slide2">2</a>
+        </li>
+        <li>
+          <a href="#slide3">3</a>
+        </li>
+        <li>
+          <a href="#slide4">4</a>
+        </li> -->
+      </ul>
+      <ul class="menu">
+        <li>
+          <button id="btnPlayPause"></button>
+        </li>
+        <li>
+          <button id="btnStop"></button>
+        </li>
+        <li>
+          <!-- <br /> -->
+          <!-- <br /> -->
+          <!-- <label for="mislider" id="valor">Volumen</label> -->
+          <input
+            type="range"
+            min="0"
+            max="1"
+            value="0.25"
+            step="0.01"
+            id="mislider"
+          />
+          <br />
+        </li>
+        <!-- <li></li> -->
+      </ul>
+    </div>
+
+    <div style="display: none">
+      <a href="https://kikopalomares.com/" target="_blank"
+        >Powered by Kiko Palomares</a
+      >
+    </div>
+    <audio autoplay loop id="reproductor">
+      <source
+        src="/musica/oporto/Mar de Lágrimas_techno.mp3"
+        type="audio/mp3"
+      />
+      <source src="/musica/oporto/Sou_Forte_Rock.mp3" type="audio/mpeg" />
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+    <script>
+      const bavol = document.querySelector("input[type='range']");
+      const barra = document.getElementById("mislider");
+      const reproductor = document.getElementById("reproductor");
+      const valor = document.getElementById("valor");
+
+      // Escuchar cambios en el slider
+      barra.addEventListener("input", function (ev) {
+        const volumen = ev.currentTarget.value;
+        // valor.textContent = (volumen * 100).toFixed(0) + "%"; // Mostrar porcentaje
+        const gradient = `linear-gradient(to right, #aa49f4 0%, #aa20f4 ${volumen * 100}%, #a9aef3 ${volumen * 100}%, #a9aef1 100%)`;
+        barra.style.background = gradient;
+        reproductor.volume = volumen; // Ajustar volumen del audio
+      });
+      const btn = document.querySelector("#btnPlayPause");
+      btn.style.backgroundImage = 'url("pause-fill.svg")';
+
+      btn.addEventListener("click", function () {
+        const estilo = window.getComputedStyle(btn);
+        const urlFondo = estilo.backgroundImage;
+        console.log(btn.style.backgroundImage);
+        if (btn.style.backgroundImage == 'url("play-fill.svg")') {
+          reproductor.play();
+          resetAutoSlide();
+          btn.style.backgroundImage = 'url("pause-fill.svg")';
+        } else {
+          btn.style.backgroundImage = 'url("play-fill.svg")';
+          reproductor.pause();
+          clearTimeout(autoSlideTimeout);
+        }
+      });
+      const btnStop = document.getElementById("btnStop");
+      btnStop.addEventListener("click", function () {
+        // cantidadSlides = 0;
+        totalLines = 0;
+        cargadatos();
+        seleccionarMenu();
+        clearTimeout(autoSlideTimeout);
+        // seleccionarMenu();
+        // console.log(document.querySelectorAll(".menu li a").length);
+
+        // seleccionarMenu();
+        reproductor.currentTime = 0;
+        // var playpromise = reproductor.play();
+        // if (playpromise !== undefined) {
+        //   playpromise
+        //     .then((_) => {
+        //       reproductor.pause();
+        //     })
+        //     .catch((error) => {
+        //       console.log("error");
+        //     });
+        // }
+        // btn.click();
+        reproductor.pause();
+        btn.style.backgroundImage = 'url("play-fill.svg")';
+      });
+    </script>
+  </body>
+</html>
