@@ -276,3 +276,18 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
   border: none;
 }
+
+@media (max-width: 476px) {
+  input[type="range"] {
+    bottom: 40px;
+    right: 5px;
+  }
+  #kiko-slider > ul.slider li {
+    height: 150px;
+  }
+  #kiko-slider > ul.slider li img {
+    /* height: 250px; */
+    width: 85vw;
+    height: 150px;
+  }
+}
