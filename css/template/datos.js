@@ -1,7 +1,9 @@
 let totalLines = 0;
 let cantidadSlides = 1;
 let autoSlideTimeout = null;
+let moviltotalLines = 10;
 window.onload = function () {
+  // detectarDispositivo();
   cargadatos();
   reproductor.volume = 0.25;
   resetAutoSlide();
@@ -18,25 +20,12 @@ function cargadatos() {
           totalLines++;
           const prevLine = lines[index - 1];
           const nombre = prevLine.split(",")[0] || "Sin nombre";
-          // Mostrar enlace en el DOM
-          html += `
-          <li id="slide${totalLines}">
-            <a href="${line}" target="_blank" title="${totalLines}" name="${totalLines}">
-              <img src="${line}" alt="icono" />
-              </a>
-              </li>
-              `;
-          // <h1>${totalLines}</h1>
-          if (totalLines < 9) {
+          html += cargaImage(totalLines, line);
+          if (totalLines < moviltotalLines) {
             if (totalLines === 1) {
               menu += selectMenu(totalLines);
             } else {
-              menu += `
-            <li>
-               <a href="#slide${totalLines}" title="${nombre}" name="${nombre}">
-               ${totalLines}</a>
-            </li>
-          `;
+              menu += cargaMenu(totalLines, nombre);
             }
           }
         }
@@ -46,6 +35,26 @@ function cargadatos() {
       // seleccionarMenu();
     })
     .catch((error) => console.error("Error al cargar el archivo:", error));
+}
+function cargaImage(total, refImage) {
+  let html = `
+    <li id="slide${total}">
+      <a href="${refImage}" target="_blank" title="${total}" name="${total}">
+      <img src="${refImage}" alt="icono" />
+      </a>
+    </li>
+  `;
+  // <h1>${totalLines}</h1>
+  return html;
+}
+function cargaMenu(total, titulo) {
+  let menu = `
+    <li>
+      <a href="#slide${total}" title="${titulo}" name="${titulo}">
+      ${total}</a>
+    </li>
+  `;
+  return menu;
 }
 function selectMenu(text) {
   cantidadSlides = text;
@@ -64,23 +73,36 @@ function seleccionarMenu() {
       let cantidadtotal = menuItems.length;
       let seleccion = selectedText;
       let inicio = 0;
-      if (selectedText <= 4) {
-        inicio = 1;
+      if (moviltotalLines === 6) {
+        if (selectedText <= 3) {
+          inicio = 1;
+        } else {
+          inicio = selectedText - 2;
+          cantidadtotal = selectedText + 2;
+          if (selectedText > totalLines - 3) {
+            selectedText = totalLines - 3;
+            cantidadtotal = totalLines;
+            inicio = totalLines - 4;
+          }
+        }
       } else {
-        inicio = selectedText - 3;
-        cantidadtotal = selectedText + 4;
-        if (selectedText > totalLines - 4) {
-          selectedText = totalLines - 4;
-          cantidadtotal = totalLines;
-          inicio = totalLines - 7;
+        if (selectedText <= 5) {
+          inicio = 1;
+        } else {
+          inicio = selectedText - 4;
+          cantidadtotal = selectedText + 4;
+          if (selectedText > totalLines - 4) {
+            selectedText = totalLines - 4;
+            cantidadtotal = totalLines;
+            inicio = totalLines - 7;
+          }
         }
       }
-
       for (let i = inicio; i <= cantidadtotal; i++) {
         if (i === seleccion) {
           menu += selectMenu(i);
         } else {
-          menu += `<li><a href="#slide${i}">${i}</a></li>`;
+          menu += cargaMenu(i, i);
         }
       }
       document.querySelector(".menu").innerHTML = menu;
@@ -95,15 +117,19 @@ function esValidaInput(url) {
   return input.checkValidity();
 }
 function resetAutoSlide() {
+  esMovil();
   if (cantidadSlides <= totalLines) {
     clearTimeout(autoSlideTimeout);
   } else {
     cantidadSlides = 0;
     console.log(
-      "cantidadSlides: " + cantidadSlides + " totallines: " + totalLines,
+      "cantidadSlides: " +
+        cantidadSlides +
+        " totallines: " +
+        totalLines +
+        " moviltotalLines :" +
+        moviltotalLines,
     );
-    // cargadatos();
-    // seleccionarMenu();
   }
   seleccionarMenu();
   autoSlideTimeout = setTimeout(() => {
@@ -169,5 +195,67 @@ function next() {
   if (selectedSlide) {
     cantidadSlides++;
     resetAutoSlide();
+  }
+}
+
+function seleccionarMenu2() {
+  const menuItems = document.querySelectorAll(".menu li a");
+  let menu = "";
+  menuItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      let selectedText = parseInt(item.textContent);
+      let cantidadtotal = menuItems.length;
+      let seleccion = selectedText;
+      let inicio = 0;
+      if (selectedText <= 3) {
+        //(moviltotalLines-3)
+        inicio = 1;
+      } else {
+        inicio = selectedText - 2; //(moviltotalLines-4)
+        cantidadtotal = selectedText + 2; //(moviltotalLines-4)
+        if (selectedText > totalLines - 3) {
+          //(moviltotalLines-3)
+          selectedText = totalLines - 3; //(moviltotalLines-3)
+          cantidadtotal = totalLines;
+          inicio = totalLines - 4; //(moviltotalLines-2)
+        }
+      }
+
+      for (let i = inicio; i <= cantidadtotal; i++) {
+        if (i === seleccion) {
+          menu += selectMenu(i);
+        } else {
+          menu += `<li><a href="#slide${i}">${i}</a></li>`;
+        }
+      }
+      document.querySelector(".menu").innerHTML = menu;
+      resetAutoSlide();
+    });
+  });
+}
+function detectarDispositivo() {
+  const ancho = window.innerWidth;
+  const esMovil = ancho < 768; // Umbral común para móviles
+  const esAndroid = /Android/i.test(navigator.userAgent);
+  const esiOS = /iPhone|iPad|iPod/i.test(navigator.platform);
+
+  if (esMovil) {
+    console.log("Vista móvil activa. Android:", esAndroid, "iOS:", esiOS);
+    // Aplicar lógica específica para móvil
+    moviltotalLines = 6;
+    seleccionarMenu();
+  } else {
+    moviltotalLines = 10;
+    seleccionarMenu();
+  }
+}
+
+window.addEventListener("resize", detectarDispositivo());
+function esMovil() {
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    console.log("Es un dispositivo móvil o tablet pequeña");
+    moviltotalLines = 6;
+  } else {
+    moviltotalLines = 10;
   }
 }
