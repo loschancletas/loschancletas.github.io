@@ -146,6 +146,7 @@ main h2 {
 }
 main article.articulo {
   background-color: #2f79d4;
+  background-image: linear-gradient(to right, #2f79d4, #e411d6);
   margin-bottom: 10px;
   overflow: hidden;
 }
